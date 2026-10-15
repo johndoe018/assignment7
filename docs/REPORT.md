@@ -2,6 +2,8 @@
 
 **Maizhanov Zhalgas · Topic 8 · Educational Technology & AI**
 
+**Live website:** [https://johndoe018.github.io/assignment7/](https://johndoe018.github.io/assignment7/)
+
 ## Learning goal and core task
 
 Levelly helps learners solve linear equations while choosing an appropriate

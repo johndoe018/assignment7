@@ -12,6 +12,11 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 
 ROOT = Path(__file__).resolve().parents[1]
+REPORT_TEXT = (ROOT / 'docs/REPORT.md').read_text()
+WEBSITE_LINK = re.search(r'^\*\*Live website:\*\* \[([^\]]+)\]\((https://[^\s)]+)\)$', REPORT_TEXT, re.MULTILINE)
+if WEBSITE_LINK is None:
+    raise ValueError('The report must include a Live website Markdown link.')
+WEBSITE_LABEL, WEBSITE_URL = WEBSITE_LINK.groups()
 FONT_ROOT = Path('/usr/share/fonts/truetype/dejavu')
 pdfmetrics.registerFont(TTFont('DejaVu', str(FONT_ROOT / 'DejaVuSans.ttf')))
 pdfmetrics.registerFont(TTFont('DejaVu-Bold', str(FONT_ROOT / 'DejaVuSans-Bold.ttf')))
@@ -41,6 +46,18 @@ def decorate(canvas, doc):
     canvas.drawString(42, height - 60, 'AI for Differentiated Learning')
     canvas.setFont('DejaVu', 9)
     canvas.drawString(43, height - 83, 'Maizhanov Zhalgas  ·  Topic 8  ·  Educational Technology & AI')
+    canvas.setFont('DejaVu', 8.5)
+    canvas.setFillColor(colors.HexColor('#d9eeab'))
+    website_y = height - 101
+    prefix = 'Live website: '
+    canvas.drawString(43, website_y, prefix)
+    link_x = 43 + pdfmetrics.stringWidth(prefix, 'DejaVu', 8.5)
+    link_end = link_x + pdfmetrics.stringWidth(WEBSITE_LABEL, 'DejaVu', 8.5)
+    canvas.drawString(link_x, website_y, WEBSITE_LABEL)
+    canvas.setStrokeColor(colors.HexColor('#d9eeab'))
+    canvas.setLineWidth(0.4)
+    canvas.line(link_x, website_y - 1.5, link_end, website_y - 1.5)
+    canvas.linkURL(WEBSITE_URL, (link_x, website_y - 2, link_end, website_y + 9), relative=0, thickness=0)
     canvas.setStrokeColor(colors.HexColor('#dce5d2'))
     canvas.line(43, 35, width - 43, 35)
     canvas.setFont('DejaVu', 7)
@@ -49,7 +66,7 @@ def decorate(canvas, doc):
     canvas.drawRightString(width - 43, 22, str(doc.page))
 
 
-lines = (ROOT / 'docs/REPORT.md').read_text().splitlines()
+lines = REPORT_TEXT.splitlines()
 story = []
 index = next(i for i, line in enumerate(lines) if line.startswith('## '))
 while index < len(lines):
