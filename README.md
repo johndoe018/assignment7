@@ -122,6 +122,8 @@ The submission consists of:
 3. [One-page PDF report](public/report.pdf), with editable [Markdown](docs/REPORT.md).
 
 GitHub Pages deployment is configured in `.github/workflows/deploy.yml`.
+The source repository is public and the first deployment was attempted. GitHub
+reported that Pages has not been enabled; the app's local checks passed.
 Enable **Settings → Pages → Build and deployment → Source: GitHub Actions**,
 and push to `main` (or run the workflow manually). A successful deployment is
 expected at `https://johndoe018.github.io/assignment7/`.
@@ -152,3 +154,12 @@ does not claim the learner independently wrote the generated implementation.
 
 React, Vite, Lucide, Transformers.js, and the model are third-party dependencies
 with their respective upstream licenses. Application source is MIT licensed.
+
+To regenerate the report on Linux with DejaVu fonts installed:
+
+```bash
+python3 -m pip install -r scripts/requirements-report.txt
+python3 scripts/generate_report.py
+```
+
+The application itself does not need Python or ReportLab at runtime.

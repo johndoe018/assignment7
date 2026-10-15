@@ -48,9 +48,10 @@ and prompt/output validation. Desktop/mobile browser checks cover interaction,
 session progress, failure handling, and automated accessibility checks. The
 AI model may select an unhelpful hint; learners can reveal all verified hints.
 First use downloads model files, potentially over 100 MB. Questions stay local.
-In this cloud environment, model-host and publishing access are restricted;
-successful real-model inference and the public deployment need separate
-verification. No live result is claimed from failure-path tests.
+In this cloud environment, model-host access is restricted. The source is public;
+the deployment attempt requires GitHub Pages activation in repository settings.
+Real-model inference and the live site still need verification. No live AI
+result is claimed from failure-path tests or synthetic UI fixtures.
 
 **Development disclosure:** Code and report prepared with AI assistance for
 Maizhanov Zhalgas; review against course authorship rules before submission.
