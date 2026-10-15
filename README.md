@@ -122,12 +122,15 @@ The submission consists of:
 3. [One-page PDF report](public/report.pdf), with editable [Markdown](docs/REPORT.md).
 
 GitHub Pages deployment is configured in `.github/workflows/deploy.yml`.
-The source repository is public and the first deployment was attempted. GitHub
-reported that Pages has not been enabled; the app's local checks passed.
+The source repository is public. After enabling Pages, the deployment workflow
+completed successfully and GitHub reported the published site address below.
 Enable **Settings → Pages → Build and deployment → Source: GitHub Actions**,
-and push to `main` (or run the workflow manually). A successful deployment is
-expected at `https://johndoe018.github.io/assignment7/`.
-**That is the intended address, not evidence that it is already live.**
+and push to `main` (or run the workflow manually) when setting up a new copy.
+The published address reported by GitHub is
+<https://johndoe018.github.io/assignment7/>.
+Direct public-site requests from this cloud environment remain blocked by its
+network proxy, so a successful remote deployment is distinguished from a
+direct functional check of the public URL.
 See [deployment steps and alternatives](docs/DEPLOYMENT.md). Netlify and Vercel
 configuration files are also included. This static application does not require
 a server-side API key. HTTPS hosting is recommended for the AI runtime and cache.

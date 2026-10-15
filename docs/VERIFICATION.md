@@ -36,10 +36,12 @@ while mathematical practice remains functional.
   was pushed to `main` and its remote SHA matched the local commit. The public
   GitHub repository page returned HTTP 200 and explicitly identified the
   repository as public. The Actions page confirmed that the deployment workflow
-  started. That [deployment attempt](https://github.com/johndoe018/assignment7/actions/runs/38741041672)
-  subsequently failed at `actions/configure-pages`: GitHub reported that a Pages
-  site was not found and that Pages must be enabled with GitHub Actions as its
-  source. This requires the repository settings change described in DEPLOYMENT.md.
+  started. The first attempt failed because Pages was disabled. After the
+  repository settings changed, the [rerun](https://github.com/johndoe018/assignment7/actions/runs/38741041672)
+  completed with `WORKFLOW_RUN_CONCLUSION_SUCCESS`; its deploy job succeeded.
+  GitHub reported the published address as
+  `https://johndoe018.github.io/assignment7/`. Public deployment is now confirmed
+  by the hosting platform.
 - Direct access to `johndoe018.github.io` also returned a proxy 403. A working
   public-site functional check has not been completed from this machine.
 - Required domain additions have been persisted in the environment draft.
